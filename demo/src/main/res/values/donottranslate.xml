@@ -17,7 +17,7 @@
 
 <resources>
     <string name="app_github">GITHUB</string>
-    <string name="app_github_url">https://github.com/lingochamp/FileDownloader</string>
+    <string name="app_github_url">https://github.com/Goooler/FileDownloader</string>
 
     <!-- multitask_test, callback -->
     <string name="multitask_test_pending" formatted="false">pending: %d</string>

@@ -1,6 +1,13 @@
 # Change log
 
-> [ Change log in english](https://github.com/lingochamp/FileDownloader/blob/master/CHANGELOG.md)
+> [ Change log in english](https://github.com/Goooler/FileDownloader/blob/master/CHANGELOG.md)
+
+## Version 1.7.10
+- Change: Migrate foregroundServiceType to shortService.
+
+## Version 1.7.9
+
+- 修复: 在 `targetSdk` 34 上需要声明前台服务类型. ([#1421](https://github.com/lingochamp/FileDownloader/issues/1421))
 
 ## Version 1.7.7
 
@@ -147,7 +154,7 @@ _2017-10-13_
 #### 修复
 
 - 修复: 修复断点续传失败, 由于Network线程中的`isAlive`不可靠导致的问题。 this closes #793
-- 修复: 修复断点续传失败，由于多个线程频繁的更新`status`并且`DownloadStatusCallback`的`sendMessage`无法保证有序性，导致下一次启动时最终状态是`process`无法断点续传(具体原因参看[这里](https://github.com/lingochamp/FileDownloader/issues/793#issuecomment-336370126))。 this refs #793, #764, #721, #769, #763, #761, #716
+- 修复: 修复断点续传失败，由于多个线程频繁的更新`status`并且`DownloadStatusCallback`的`sendMessage`无法保证有序性，导致下一次启动时最终状态是`process`无法断点续传(具体原因参看[这里](https://github.com/Goooler/FileDownloader/issues/793#issuecomment-336370126))。 this refs #793, #764, #721, #769, #763, #761, #716
 - 修复: 不再由于任务已经结束依然存在需要派发的信息而让用户程序奔溃，因为这个对用户并不会照成影响。 this closes #562
 - 修复: 修复当用户频繁调用`pause`时，有可能出现`it can't take a snapshot for the task xxx`错误的问题。
 - 修复: 修复由于内部存储的任务对象大小存在问题，导致这样的对象任务每一次启动都必然会`416`的问题。
@@ -235,7 +242,7 @@ _2017-07-07_
 
 #### 修复
 
-- 修复(no-response): 修复当多线程分块下载同时完成时，有可能会由于线程安全问题导致completed无法得到回调的问题，具体情况参看[这里](https://github.com/lingochamp/FileDownloader/issues/631#issuecomment-313387299)。 Closes #631
+- 修复(no-response): 修复当多线程分块下载同时完成时，有可能会由于线程安全问题导致completed无法得到回调的问题，具体情况参看[这里](https://github.com/Goooler/FileDownloader/issues/631#issuecomment-313387299)。 Closes #631
 
 ## Version 1.5.9
 
@@ -429,7 +436,7 @@ _2016-12-18_
 - 这个版本开始，你可以定制自己的网络连接组件: [FileDownloadConnection][FileDownloadConnection-java-link]，默认情况下我们使用[这个][FileDownloadUrlConnection-java-link]。
 - 这个版本开始，我们不再默认依赖okhttp，你可以根据自己的需求进行定制。(如果你依然想要使用okhttp，可以考虑集成下这个[仓库](https://github.com/Jacksgong/filedownloader-okhttp3-connection))
 
-> 如果你依然需要配置`timeout`、`proxy`，请不用担心，我已经对默认的网络连接组件实现了这几个接口: [DemoApplication](https://github.com/lingochamp/FileDownloader/blob/master/demo/src/main/java/com/liulishuo/filedownloader/demo/DemoApplication.java#L35)，如果有需要可以看看。
+> 如果你依然需要配置`timeout`、`proxy`，请不用担心，我已经对默认的网络连接组件实现了这几个接口: [DemoApplication](https://github.com/Goooler/FileDownloader/blob/master/demo/src/main/java/com/liulishuo/filedownloader/demo/DemoApplication.java#L35)，如果有需要可以看看。
 
 #### 新接口
 
@@ -669,7 +676,7 @@ _2016-05-13_
 
 #### 修复
 
-> 为什么FileDownload服务可以运行在UI进程? 参考 [filedownloader.properties](https://github.com/lingochamp/FileDownloader/wiki/filedownloader.properties).
+> 为什么FileDownload服务可以运行在UI进程? 参考 [filedownloader.properties](https://github.com/Goooler/FileDownloader/wiki/filedownloader.properties).
 
 - 修复(下载服务共享UI进程时): 修复在下载服务不是运行在独立进程的情况下（非默认情况），附加的header没有带上请求的bug。Closes #149.
 
@@ -889,12 +896,12 @@ _2016-01-13_
 #### 新接口
 
 - `FileDownloader#unBindServiceIfIdle(void)`: 如果目前下载进程没有任务正在执行，则关停下载进程
-- `FileDownloader#getStatus(downloadId)`: 获取下载Id为downloadId的状态(可参考[任务管理demo](https://github.com/lingochamp/FileDownloader/blob/master/demo/src/main/java/com/liulishuo/filedownloader/demo/TasksManagerDemoActivity.java))
-- `FileDownloader#isServiceConnected(void)`: 是否已经启动并且连接上下载进程(可参考[任务管理demo](https://github.com/lingochamp/FileDownloader/blob/master/demo/src/main/java/com/liulishuo/filedownloader/demo/TasksManagerDemoActivity.java))
+- `FileDownloader#getStatus(downloadId)`: 获取下载Id为downloadId的状态(可参考[任务管理demo](https://github.com/Goooler/FileDownloader/blob/master/demo/src/main/java/com/liulishuo/filedownloader/demo/TasksManagerDemoActivity.java))
+- `FileDownloader#isServiceConnected(void)`: 是否已经启动并且连接上下载进程(可参考[任务管理demo](https://github.com/Goooler/FileDownloader/blob/master/demo/src/main/java/com/liulishuo/filedownloader/demo/TasksManagerDemoActivity.java))
 
 #### 性能与提高
 
-- 支持[Chunked transfer encoding](https://en.wikipedia.org/wiki/Chunked_transfer_encoding) 数据下载(建议看一眼[Single Task Test](https://github.com/lingochamp/FileDownloader/blob/master/demo/src/main/java/com/liulishuo/filedownloader/demo/SingleTaskTestActivity.java)).
+- 支持[Chunked transfer encoding](https://en.wikipedia.org/wiki/Chunked_transfer_encoding) 数据下载(建议看一眼[Single Task Test](https://github.com/Goooler/FileDownloader/blob/master/demo/src/main/java/com/liulishuo/filedownloader/demo/SingleTaskTestActivity.java)).
 - 提高性能: 减少 IPC。
 - 提高性能: 减少线程锁。
 - 提高性能: 在`:filedownloader`进程启动时，对数据库中的数据进行第一级别维护。
@@ -949,6 +956,6 @@ _2015-12-22_
 
 - initial release
 
-[RemitDatabase-png]: https://github.com/lingochamp/FileDownloader/raw/master/art/remit-database.png
-[FileDownloadConnection-java-link]: https://github.com/lingochamp/FileDownloader/blob/master/library/src/main/java/com/liulishuo/filedownloader/connection/FileDownloadConnection.java
-[FileDownloadUrlConnection-java-link]: https://github.com/lingochamp/FileDownloader/blob/master/library/src/main/java/com/liulishuo/filedownloader/connection/FileDownloadUrlConnection.java
+[RemitDatabase-png]: https://github.com/Goooler/FileDownloader/raw/master/art/remit-database.png
+[FileDownloadConnection-java-link]: https://github.com/Goooler/FileDownloader/blob/master/library/src/main/java/com/liulishuo/filedownloader/connection/FileDownloadConnection.java
+[FileDownloadUrlConnection-java-link]: https://github.com/Goooler/FileDownloader/blob/master/library/src/main/java/com/liulishuo/filedownloader/connection/FileDownloadUrlConnection.java

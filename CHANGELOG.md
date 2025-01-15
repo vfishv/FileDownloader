@@ -1,6 +1,14 @@
 # Change log
 
-> [中文迭代日志](https://github.com/lingochamp/FileDownloader/blob/master/CHANGELOG-ZH.md)
+> [中文迭代日志](https://github.com/Goooler/FileDownloader/blob/master/CHANGELOG-ZH.md)
+
+## Version 1.7.10
+
+- Change: Migrate foregroundServiceType to shortService.
+
+## Version 1.7.9
+
+- Fix: Foreground service types are required on `targetSdk` 34. ([#1421](https://github.com/lingochamp/FileDownloader/issues/1421))
 
 ## Version 1.7.7
 
@@ -213,7 +221,7 @@ _2017-07-07_
 
 #### Fix
 
-- Fix(no-response): Fix may occur no-respose when multiple connections complete fetch data simultaneously, more detail please move to [here](https://github.com/lingochamp/FileDownloader/issues/631#issuecomment-313451398). Closes #631
+- Fix(no-response): Fix may occur no-respose when multiple connections complete fetch data simultaneously, more detail please move to [here](https://github.com/Goooler/FileDownloader/issues/631#issuecomment-313451398). Closes #631
 
 ## Version 1.5.9
 
@@ -407,7 +415,7 @@ _2016-12-18_
 - Since this version you can customize you own [FileDownloadConnection][FileDownloadConnection-java-link] component, we use [this one][FileDownloadUrlConnection-java-link] as default.
 - Since this version, FileDownloader don't dependency the okhttp as default. (If you still want to use the okhttp as your connection component, you can integrate [this repo](https://github.com/Jacksgong/filedownloader-okhttp3-connection) feel free)
 
-> If you still need configure `timeout`、`proxy` for the connection component, but you don't want to implement your own one, don't worry, I implement it for the default connection component too, just move to : [DemoApplication](https://github.com/lingochamp/FileDownloader/blob/master/demo/src/main/java/com/liulishuo/filedownloader/demo/DemoApplication.java#L35), check the code if you want.
+> If you still need configure `timeout`、`proxy` for the connection component, but you don't want to implement your own one, don't worry, I implement it for the default connection component too, just move to : [DemoApplication](https://github.com/Goooler/FileDownloader/blob/master/demo/src/main/java/com/liulishuo/filedownloader/demo/DemoApplication.java#L35), check the code if you want.
 
 #### New Interfaces
 
@@ -648,7 +656,7 @@ _2016-05-13_
 
 #### Fix
 
-> Why FileDownload can run in UI process? Ref [filedownloader.properties](https://github.com/lingochamp/FileDownloader/wiki/filedownloader.properties).
+> Why FileDownload can run in UI process? Ref [filedownloader.properties](https://github.com/Goooler/FileDownloader/wiki/filedownloader.properties).
 
 - Fix(shared-UI-process): fix the addition header does not attach to Http-request when the FileDownload service isn't running in the separate process to UI process. Closes #149.
 
@@ -726,7 +734,7 @@ _2016-04-18_
 #### New Interfaces
 
 - Add `BaseDownloadTask#getSpeed` and `BaseDownloadTask#setMinIntervalUpdateSpeed`: Get the download speed for a task. If it is in processing, the speed would be real-time speed; If finished, the speed would be average speed. Closes #95
-- Add the `FileDownloader#startForeground` and `FileDownloader#stopForeground` for supporting the Foreground mode([Service#startForeground](https://github.com/lingochamp/FileDownloader/wiki/filedownloader.properties)); For ensure the FileDownloadService would keep alive when user removed the App from the recent apps. Closes #110 .
+- Add the `FileDownloader#startForeground` and `FileDownloader#stopForeground` for supporting the Foreground mode([Service#startForeground](https://github.com/Goooler/FileDownloader/wiki/filedownloader.properties)); For ensure the FileDownloadService would keep alive when user removed the App from the recent apps. Closes #110 .
 - Support configurations `download.min-progress-step` and `download.min-progress-time`: The min buffered so far bytes and millisecond, used for adjudging whether is time to sync the download so far bytes to database and make sure sync the downloaded buffers to the local file. More small more frequent, then download more slowly, but will safer in the scene of the process is killed unexpectedly. Default 65536(MinProgressStep) and 2000(MinProgressTime), which follow the value in `com.android.providers.downloads.Constants`.
 - Support the configuration `process.non-separate` in `filedownloader.properties`: The FileDownloadService runs in the separate process ':filedownloader' as default, if you want to run the FileDownloadService in the main process, set this configuration as `true`. Closes #106 .
 
@@ -871,12 +879,12 @@ _2016-01-13_
 #### New Interfaces
 
 - `FileDownloader#unBindServiceIfIdle(void)`: If there is no active task in the `:filedownloader` progress currently , then unbind & stop `:filedownloader` process
-- `FileDownloader#getStatus(downloadId)`: Get download status by the downloadId(ps: Please refer to [Tasks Manager demo](https://github.com/lingochamp/FileDownloader/blob/master/demo/src/main/java/com/liulishuo/filedownloader/demo/TasksManagerDemoActivity.java)
-- `FileDownloader#isServiceConnected(void)`: Whether started and connected to the `:filedownloader` progress(ps: Please refer to [Tasks Manager demo](https://github.com/lingochamp/FileDownloader/blob/master/demo/src/main/java/com/liulishuo/filedownloader/demo/TasksManagerDemoActivity.java))
+- `FileDownloader#getStatus(downloadId)`: Get download status by the downloadId(ps: Please refer to [Tasks Manager demo](https://github.com/Goooler/FileDownloader/blob/master/demo/src/main/java/com/liulishuo/filedownloader/demo/TasksManagerDemoActivity.java)
+- `FileDownloader#isServiceConnected(void)`: Whether started and connected to the `:filedownloader` progress(ps: Please refer to [Tasks Manager demo](https://github.com/Goooler/FileDownloader/blob/master/demo/src/main/java/com/liulishuo/filedownloader/demo/TasksManagerDemoActivity.java))
 
 #### Enhancement
 
-- Supported [Chunked transfer encoding](https://en.wikipedia.org/wiki/Chunked_transfer_encoding) data download(Recommend to glance at demo on [Single Task Test](https://github.com/lingochamp/FileDownloader/blob/master/demo/src/main/java/com/liulishuo/filedownloader/demo/SingleTaskTestActivity.java)).
+- Supported [Chunked transfer encoding](https://en.wikipedia.org/wiki/Chunked_transfer_encoding) data download(Recommend to glance at demo on [Single Task Test](https://github.com/Goooler/FileDownloader/blob/master/demo/src/main/java/com/liulishuo/filedownloader/demo/SingleTaskTestActivity.java)).
 - Improve Performance: Reduce IPC.
 - Improve Performance: Reduce lock.
 - Improve Performance: Delete invalid datum in db with the `:filedownloader` progress start.
@@ -901,7 +909,7 @@ _2016-01-04_
 
 _2015-12-27_
 
-- Optimize thread digestion([map](https://github.com/lingochamp/FileDownloader/raw/master/art/filedownload_sample_description.png).
+- Optimize thread digestion([map](https://github.com/Goooler/FileDownloader/raw/master/art/filedownload_sample_description.png).
 - Fix: may `pause()` invalid in large queue task.
 - Fix: large queue task parallel download, may download has been completed but the callback
 
@@ -932,6 +940,6 @@ _2015-12-22_
 
 - initial release
 
-[RemitDatabase-png]: https://github.com/lingochamp/FileDownloader/raw/master/art/remit-database.png
-[FileDownloadConnection-java-link]: https://github.com/lingochamp/FileDownloader/blob/master/library/src/main/java/com/liulishuo/filedownloader/connection/FileDownloadConnection.java
-[FileDownloadUrlConnection-java-link]: https://github.com/lingochamp/FileDownloader/blob/master/library/src/main/java/com/liulishuo/filedownloader/connection/FileDownloadUrlConnection.java
+[RemitDatabase-png]: https://github.com/Goooler/FileDownloader/raw/master/art/remit-database.png
+[FileDownloadConnection-java-link]: https://github.com/Goooler/FileDownloader/blob/master/library/src/main/java/com/liulishuo/filedownloader/connection/FileDownloadConnection.java
+[FileDownloadUrlConnection-java-link]: https://github.com/Goooler/FileDownloader/blob/master/library/src/main/java/com/liulishuo/filedownloader/connection/FileDownloadUrlConnection.java

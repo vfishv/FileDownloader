@@ -22,11 +22,13 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.NotificationCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ProgressBar;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.PendingIntentCompat;
 
 import com.liulishuo.filedownloader.BaseDownloadTask;
 import com.liulishuo.filedownloader.FileDownloadQueueSet;
@@ -194,9 +196,10 @@ public class NotificationSampleActivity extends AppCompatActivity {
             intents[0] = Intent.makeMainActivity(
                     new ComponentName(DemoApplication.CONTEXT, MainActivity.class));
             intents[1] = new Intent(DemoApplication.CONTEXT, NotificationSampleActivity.class);
-            final PendingIntent pendingIntent = PendingIntent.getActivities(
+            final PendingIntent pendingIntent = PendingIntentCompat.getActivities(
                     DemoApplication.CONTEXT, 0, intents,
-                    PendingIntent.FLAG_UPDATE_CURRENT);
+                    PendingIntent.FLAG_UPDATE_CURRENT,
+                    false);
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 builder = new NotificationCompat.Builder(

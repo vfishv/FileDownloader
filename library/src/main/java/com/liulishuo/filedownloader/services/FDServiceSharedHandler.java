@@ -15,9 +15,13 @@
  */
 package com.liulishuo.filedownloader.services;
 
+import static android.content.pm.ServiceInfo.FOREGROUND_SERVICE_TYPE_SHORT_SERVICE;
+
 import android.app.Notification;
 import android.content.Intent;
 import android.os.IBinder;
+
+import androidx.core.app.ServiceCompat;
 
 import com.liulishuo.filedownloader.FileDownloadServiceProxy;
 import com.liulishuo.filedownloader.i.IFileDownloadIPCCallback;
@@ -101,7 +105,12 @@ public class FDServiceSharedHandler extends IFileDownloadIPCService.Stub
     @Override
     public void startForeground(int id, Notification notification) {
         if (this.wService != null && this.wService.get() != null) {
-            this.wService.get().startForeground(id, notification);
+            ServiceCompat.startForeground(
+                    this.wService.get(),
+                    id,
+                    notification,
+                    FOREGROUND_SERVICE_TYPE_SHORT_SERVICE
+            );
         }
     }
 

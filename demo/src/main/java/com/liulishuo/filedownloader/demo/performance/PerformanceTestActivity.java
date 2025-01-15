@@ -18,11 +18,12 @@ package com.liulishuo.filedownloader.demo.performance;
 
 import android.os.Bundle;
 import android.os.Parcel;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.AppCompatSeekBar;
 import android.view.View;
 import android.widget.ScrollView;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatSeekBar;
 
 import com.liulishuo.filedownloader.demo.R;
 import com.liulishuo.filedownloader.util.FileDownloadUtils;
@@ -34,7 +35,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.RandomAccessFile;
-import java.nio.ByteBuffer;
 
 import okio.Buffer;
 import okio.Okio;
@@ -344,9 +344,9 @@ public class PerformanceTestActivity extends AppCompatActivity {
     private TextView infoTv;
 
     private void assignViews() {
-        ioPerformanceSb = (AppCompatSeekBar) findViewById(R.id.io_performance_sb);
-        scrollView = (ScrollView) findViewById(R.id.scrollView);
-        infoTv = (TextView) findViewById(R.id.info_tv);
+        ioPerformanceSb = findViewById(R.id.io_performance_sb);
+        scrollView = findViewById(R.id.scrollView);
+        infoTv = findViewById(R.id.info_tv);
     }
 
 }

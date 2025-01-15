@@ -1,13 +1,13 @@
 # FileDownloader
+
 Android multi-task file download engine.
 
+This is a fork of [FileDownloader](https://github.com/lingochamp/FileDownloader) for fixing [lingochamp/FileDownloader/issues/1421](https://github.com/lingochamp/FileDownloader/issues/1421).
 
-[![Download][bintray_svg]][bintray_url]
-![][file_downloader_svg]
-[![Build Status][build_status_svg]][build_status_link]
-[![][filedownloader_snapshot_svg]](https://oss.sonatype.org/content/repositories/snapshots/com/liulishuo/filedownloader/)
 
-> [中文文档](https://github.com/lingochamp/FileDownloader/blob/master/README-zh.md)
+[![Maven Central](https://img.shields.io/maven-central/v/io.github.goooler.android/filedownloader-fork)](https://central.sonatype.com/artifact/io.github.goooler.android/filedownloader-fork)
+
+> [中文文档](https://github.com/Goooler/FileDownloader/blob/master/README-zh.md)
 
 ## FileDownloader2
 
@@ -32,7 +32,7 @@ FileDownloader is installed by adding the following dependency to your `build.gr
 
 ```groovy
 dependencies {
-    implementation 'com.liulishuo.filedownloader:library:1.7.7'
+    implementation 'io.github.goooler.android:filedownloader-fork:1.7.10'
 }
 ```
 
@@ -58,11 +58,11 @@ From now on, FileDownloader support following components to be customized by you
 | ForegroundServiceConfig | [ForegroundServiceConfig][ForegroundServiceConfig-java-link] | [ForegroundServiceConfig][ForegroundServiceConfig-java-link]
 
 > - If you want to use okhttp as your connection component, the simplest way is [this repo](https://github.com/Jacksgong/filedownloader-okhttp3-connection).
-> - If you don't want to use any database on FileDownloader(the database on FileDownloader is used for persist tasks' breakpoint info) just using [NoDatabaseImpl.java](https://github.com/lingochamp/FileDownloader/blob/master/library/src/main/java/com/liulishuo/filedownloader/services/NoDatabaseImpl.java)
+> - If you don't want to use any database on FileDownloader(the database on FileDownloader is used for persist tasks' breakpoint info) just using [NoDatabaseImpl.java](https://github.com/Goooler/FileDownloader/blob/master/library/src/main/java/com/liulishuo/filedownloader/services/NoDatabaseImpl.java)
 
 ### How to valid it?
 
-Just create your own `DownloadMgrInitialParams.InitCustomMaker` and put those customized component to it, finally init the FileDownloader with it: [FileDownloader#init](https://github.com/lingochamp/FileDownloader/blob/master/library/src/main/java/com/liulishuo/filedownloader/FileDownloader.java#L62)
+Just create your own `DownloadMgrInitialParams.InitCustomMaker` and put those customized component to it, finally init the FileDownloader with it: [FileDownloader#init](https://github.com/Goooler/FileDownloader/blob/master/library/src/main/java/com/liulishuo/filedownloader/FileDownloader.java#L62)
 
 ## Adaptation
 
@@ -70,7 +70,7 @@ Just create your own `DownloadMgrInitialParams.InitCustomMaker` and put those cu
 
 The restriction of background service has been tightened since Android 8.0, for more details, please refer to [here](https://developer.android.com/about/versions/oreo/background).
 So, after Android 8.0, the download service will be a foreground service when start downloading during app is in background and you will see a notification with a title named "FileDownloader" start from FileDownloader 1.7.6.
-You can refer to [here](https://github.com/lingochamp/FileDownloader/wiki/Compatibility-of-Android-O-Service) to custom the notification.
+You can refer to [here](https://github.com/Goooler/FileDownloader/wiki/Compatibility-of-Android-O-Service) to custom the notification.
 
 ### Adapt to Android 9.0
 
@@ -92,9 +92,9 @@ According to the [migration notes](https://developer.android.com/about/versions/
 
 ## Usage
 
-By default, the FileDownloadService runs on the separate process, if you want to run it on the main process, just configure on the [filedownloader.properties](https://github.com/lingochamp/FileDownloader/wiki/filedownloader.properties), and you can use `FileDownloadUtils.isDownloaderProcess(Context)` to check whether the FileDownloadService can run on the current process.
+By default, the FileDownloadService runs on the separate process, if you want to run it on the main process, just configure on the [filedownloader.properties](https://github.com/Goooler/FileDownloader/wiki/filedownloader.properties), and you can use `FileDownloadUtils.isDownloaderProcess(Context)` to check whether the FileDownloadService can run on the current process.
 
-For more readable, Moved to [Wiki](https://github.com/lingochamp/FileDownloader/wiki).
+For more readable, Moved to [Wiki](https://github.com/Goooler/FileDownloader/wiki).
 
 ## LICENSE
 
@@ -116,31 +116,25 @@ limitations under the License.
 
 [license_2_svg]: https://img.shields.io/hexpm/l/plug.svg
 [android_platform_svg]: https://img.shields.io/badge/Platform-Android-brightgreen.svg
-[file_downloader_svg]: https://img.shields.io/badge/Android-FileDownloader-orange.svg
-[structure-img]: https://github.com/lingochamp/FileDownloader/raw/master/art/structure.png
-[message-system-img]: https://github.com/lingochamp/FileDownloader/raw/master/art/message-system.png
-[hybrid_test_demo_gif]: https://github.com/lingochamp/FileDownloader/raw/master/art/hybrid_test_demo.gif
-[parallel_tasks_demo_gif]: https://github.com/lingochamp/FileDownloader/raw/master/art/parallel_tasks_demo.gif
-[serial_tasks_demo_gif]: https://github.com/lingochamp/FileDownloader/raw/master/art/serial_tasks_demo.gif
-[tasks_manager_demo_gif]: https://github.com/lingochamp/FileDownloader/raw/master/art/tasks_manager_demo.gif
-[avoid_drop_frames_1_gif]: https://github.com/lingochamp/FileDownloader/raw/master/art/avoid_drop_frames1.gif
-[avoid_drop_frames_2_gif]: https://github.com/lingochamp/FileDownloader/raw/master/art/avoid_drop_frames2.gif
-[single_demo_gif]: https://github.com/lingochamp/FileDownloader/raw/master/art/single_demo.gif
-[chunked_demo_gif]: https://github.com/lingochamp/FileDownloader/raw/master/art/chunked_demo.gif
-[bintray_svg]: https://api.bintray.com/packages/jacksgong/maven/FileDownloader/images/download.svg
-[bintray_url]: https://bintray.com/jacksgong/maven/FileDownloader/_latestVersion
-[file_download_listener_callback_flow_png]: https://github.com/lingochamp/FileDownloader/raw/master/art/filedownloadlistener_callback_flow.png
-[build_status_svg]: https://travis-ci.org/lingochamp/FileDownloader.svg?branch=master
-[filedownloader_snapshot_svg]: https://img.shields.io/badge/SnapShot-1.7.8-yellow.svg
-[build_status_link]: https://travis-ci.org/lingochamp/FileDownloader
-[FileDownloadConnection-java-link]: https://github.com/lingochamp/FileDownloader/blob/master/library/src/main/java/com/liulishuo/filedownloader/connection/FileDownloadConnection.java
-[FileDownloadUrlConnection-java-link]: https://github.com/lingochamp/FileDownloader/blob/master/library/src/main/java/com/liulishuo/filedownloader/connection/FileDownloadUrlConnection.java
-[FileDownloadDatabase-java-link]: https://github.com/lingochamp/FileDownloader/blob/master/library/src/main/java/com/liulishuo/filedownloader/database/RemitDatabase.java
-[RemitDatabase-java-link]: https://github.com/lingochamp/FileDownloader/blob/master/library/src/main/java/com/liulishuo/filedownloader/database/RemitDatabase.java
-[FileDownloadOutputStream-java-link]: https://github.com/lingochamp/FileDownloader/blob/master/library/src/main/java/com/liulishuo/filedownloader/stream/FileDownloadOutputStream.java
-[FileDownloadRandomAccessFile-java-link]: https://github.com/lingochamp/FileDownloader/blob/master/library/src/main/java/com/liulishuo/filedownloader/stream/FileDownloadRandomAccessFile.java
-[ConnectionCountAdapter-java-link]: https://github.com/lingochamp/FileDownloader/blob/master/library/src/main/java/com/liulishuo/filedownloader/util/FileDownloadHelper.java#L100
-[DefaultConnectionCountAdapter-java-link]: https://github.com/lingochamp/FileDownloader/blob/master/library/src/main/java/com/liulishuo/filedownloader/connection/DefaultConnectionCountAdapter.java
-[IdGenerator-java-link]: https://github.com/lingochamp/FileDownloader/blob/master/library/src/main/java/com/liulishuo/filedownloader/util/FileDownloadHelper.java#L55
-[DefaultIdGenerator-java-link]: https://github.com/lingochamp/FileDownloader/blob/master/library/src/main/java/com/liulishuo/filedownloader/services/DefaultIdGenerator.java
-[ForegroundServiceConfig-java-link]:https://github.com/lingochamp/FileDownloader/blob/master/library/src/main/java/com/liulishuo/filedownloader/services/ForegroundServiceConfig.java
+[structure-img]: https://github.com/Goooler/FileDownloader/raw/master/art/structure.png
+[message-system-img]: https://github.com/Goooler/FileDownloader/raw/master/art/message-system.png
+[hybrid_test_demo_gif]: https://github.com/Goooler/FileDownloader/raw/master/art/hybrid_test_demo.gif
+[parallel_tasks_demo_gif]: https://github.com/Goooler/FileDownloader/raw/master/art/parallel_tasks_demo.gif
+[serial_tasks_demo_gif]: https://github.com/Goooler/FileDownloader/raw/master/art/serial_tasks_demo.gif
+[tasks_manager_demo_gif]: https://github.com/Goooler/FileDownloader/raw/master/art/tasks_manager_demo.gif
+[avoid_drop_frames_1_gif]: https://github.com/Goooler/FileDownloader/raw/master/art/avoid_drop_frames1.gif
+[avoid_drop_frames_2_gif]: https://github.com/Goooler/FileDownloader/raw/master/art/avoid_drop_frames2.gif
+[single_demo_gif]: https://github.com/Goooler/FileDownloader/raw/master/art/single_demo.gif
+[chunked_demo_gif]: https://github.com/Goooler/FileDownloader/raw/master/art/chunked_demo.gif
+[file_download_listener_callback_flow_png]: https://github.com/Goooler/FileDownloader/raw/master/art/filedownloadlistener_callback_flow.png
+[FileDownloadConnection-java-link]: https://github.com/Goooler/FileDownloader/blob/master/library/src/main/java/com/liulishuo/filedownloader/connection/FileDownloadConnection.java
+[FileDownloadUrlConnection-java-link]: https://github.com/Goooler/FileDownloader/blob/master/library/src/main/java/com/liulishuo/filedownloader/connection/FileDownloadUrlConnection.java
+[FileDownloadDatabase-java-link]: https://github.com/Goooler/FileDownloader/blob/master/library/src/main/java/com/liulishuo/filedownloader/database/RemitDatabase.java
+[RemitDatabase-java-link]: https://github.com/Goooler/FileDownloader/blob/master/library/src/main/java/com/liulishuo/filedownloader/database/RemitDatabase.java
+[FileDownloadOutputStream-java-link]: https://github.com/Goooler/FileDownloader/blob/master/library/src/main/java/com/liulishuo/filedownloader/stream/FileDownloadOutputStream.java
+[FileDownloadRandomAccessFile-java-link]: https://github.com/Goooler/FileDownloader/blob/master/library/src/main/java/com/liulishuo/filedownloader/stream/FileDownloadRandomAccessFile.java
+[ConnectionCountAdapter-java-link]: https://github.com/Goooler/FileDownloader/blob/master/library/src/main/java/com/liulishuo/filedownloader/util/FileDownloadHelper.java#L100
+[DefaultConnectionCountAdapter-java-link]: https://github.com/Goooler/FileDownloader/blob/master/library/src/main/java/com/liulishuo/filedownloader/connection/DefaultConnectionCountAdapter.java
+[IdGenerator-java-link]: https://github.com/Goooler/FileDownloader/blob/master/library/src/main/java/com/liulishuo/filedownloader/util/FileDownloadHelper.java#L55
+[DefaultIdGenerator-java-link]: https://github.com/Goooler/FileDownloader/blob/master/library/src/main/java/com/liulishuo/filedownloader/services/DefaultIdGenerator.java
+[ForegroundServiceConfig-java-link]:https://github.com/Goooler/FileDownloader/blob/master/library/src/main/java/com/liulishuo/filedownloader/services/ForegroundServiceConfig.java

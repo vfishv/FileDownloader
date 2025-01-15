@@ -1,20 +1,15 @@
 # FileDownloader
 Android 文件下载引擎，稳定、高效、灵活、简单易用
 
-[![Gitter][gitter_svg]][gitter_url]
-[![Download][bintray_svg]][bintray_url]
-![][file_downloader_svg]
-[![Build Status][build_status_svg]][build_status_link]
-[![][filedownloader_snapshot_svg]](https://oss.sonatype.org/content/repositories/snapshots/com/liulishuo/filedownloader/)
+[![Maven Central](https://img.shields.io/maven-central/v/io.github.goooler.android/filedownloader-fork)](https://central.sonatype.com/artifact/io.github.goooler.android/filedownloader-fork)
 
-
-> [README DOC](https://github.com/lingochamp/FileDownloader/blob/master/README.md)
+> [README DOC](https://github.com/Goooler/FileDownloader/blob/master/README.md)
 
 ---
 
-#### 版本迭代日志: [Change Log](https://github.com/lingochamp/FileDownloader/blob/master/CHANGELOG.md)
+#### 版本迭代日志: [Change Log](https://github.com/Goooler/FileDownloader/blob/master/CHANGELOG.md)
 
-#### 英文文档: [Wiki](https://github.com/lingochamp/FileDownloader/wiki)、[优化建议](https://github.com/lingochamp/FileDownloader/wiki/Optimize-Tutorial)
+#### 英文文档: [Wiki](https://github.com/Goooler/FileDownloader/wiki)、[优化建议](https://github.com/Goooler/FileDownloader/wiki/Optimize-Tutorial)
 
 ---
 
@@ -50,7 +45,7 @@ Android 文件下载引擎，稳定、高效、灵活、简单易用
 
 从 Android 8.0 开发，后台服务的限制增强了，可以参考[这里](https://developer.android.com/about/versions/oreo/background)了解更多信息。
 因此，自 FileDownloader 1.7.6 版本开始， Android 8.0 及之后的系统上，如果在后台启动下载服务，这个服务将会是一个前台服务，同时你会看到一个标题为 "FileDownloader" 的通知。
-你可以参考[这里](https://github.com/lingochamp/FileDownloader/wiki/Compatibility-of-Android-O-Servic)去自定义通知的内容。
+你可以参考[这里](https://github.com/Goooler/FileDownloader/wiki/Compatibility-of-Android-O-Servic)去自定义通知的内容。
 
 ### 适配 Android 9.0
 
@@ -86,10 +81,10 @@ FileDownloader 1.7.6 已经在 demo 中处理了此问题。
 在项目中引用:
 
 ```groovy
-implementation 'com.liulishuo.filedownloader:library:1.7.7'
+implementation 'io.github.goooler.android:filedownloader-fork:1.7.10'
 ```
 
-> 如果是eclipse引入jar包参考: [这里](https://github.com/lingochamp/FileDownloader/issues/212#issuecomment-232240415)
+> 如果是eclipse引入jar包参考: [这里](https://github.com/Goooler/FileDownloader/issues/212#issuecomment-232240415)
 
 如果需要引入snapshot版本，请添加sonatype的仓库:
 
@@ -299,7 +294,7 @@ queueSet.start()
 | IdGenerator | IdGenerator | DefaultIdGenerator | DefaultIdGenerator | 自定义任务Id生成器
 
 > - 如果你希望Okhttp作为你的网络连接组件，可以使用[这个库](https://github.com/Jacksgong/filedownloader-okhttp3-connection)。
-> - 如果你不希望FileDownloader用到任何的数据库(是用于存储任务的断点续成信息的)，只需要使用[NoDatabaseImpl.java](https://github.com/lingochamp/FileDownloader/blob/master/library/src/main/java/com/liulishuo/filedownloader/services/NoDatabaseImpl.java)即可。
+> - 如果你不希望FileDownloader用到任何的数据库(是用于存储任务的断点续成信息的)，只需要使用[NoDatabaseImpl.java](https://github.com/Goooler/FileDownloader/blob/master/library/src/main/java/com/liulishuo/filedownloader/services/NoDatabaseImpl.java)即可。
 
 #### Task接口说明
 
@@ -428,7 +423,7 @@ blockComplete -> completed
 
 #### `FileDownloadNotificationHelper`
 
-> 如何快速集成Notification呢? 建议参考[NotificationMinSetActivity](https://github.com/lingochamp/FileDownloader/blob/master/demo/src/main/java/com/liulishuo/filedownloader/demo/NotificationMinSetActivity.java)、[NotificationSampleActivity](https://github.com/lingochamp/FileDownloader/blob/master/demo/src/main/java/com/liulishuo/filedownloader/demo/NotificationSampleActivity.java)。
+> 如何快速集成Notification呢? 建议参考[NotificationMinSetActivity](https://github.com/Goooler/FileDownloader/blob/master/demo/src/main/java/com/liulishuo/filedownloader/demo/NotificationMinSetActivity.java)、[NotificationSampleActivity](https://github.com/Goooler/FileDownloader/blob/master/demo/src/main/java/com/liulishuo/filedownloader/demo/NotificationSampleActivity.java)。
 
 #### `filedownloader.properties`
 
@@ -507,22 +502,14 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ```
 
-[gitter_url]: https://gitter.im/lingochamp/FileDownloader?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge
-[gitter_svg]: https://badges.gitter.im/lingochamp/FileDownloader.svg
 [license_2_svg]: https://img.shields.io/hexpm/l/plug.svg
 [android_platform_svg]: https://img.shields.io/badge/Platform-Android-brightgreen.svg
-[file_downloader_svg]: https://img.shields.io/badge/Android-FileDownloader-orange.svg
-[mix_tasks_demo_gif]: https://github.com/lingochamp/FileDownloader/raw/master/art/mix_tasks_demo.gif
-[parallel_tasks_demo_gif]: https://github.com/lingochamp/FileDownloader/raw/master/art/parallel_tasks_demo.gif
-[serial_tasks_demo_gif]: https://github.com/lingochamp/FileDownloader/raw/master/art/serial_tasks_demo.gif
-[tasks_manager_demo_gif]: https://github.com/lingochamp/FileDownloader/raw/master/art/tasks_manager_demo.gif
-[avoid_drop_frames_1_gif]: https://github.com/lingochamp/FileDownloader/raw/master/art/avoid_drop_frames1.gif
-[avoid_drop_frames_2_gif]: https://github.com/lingochamp/FileDownloader/raw/master/art/avoid_drop_frames2.gif
-[single_demo_gif]: https://github.com/lingochamp/FileDownloader/raw/master/art/single_demo.gif
-[chunked_demo_gif]: https://github.com/lingochamp/FileDownloader/raw/master/art/chunked_demo.gif
-[bintray_svg]: https://api.bintray.com/packages/jacksgong/maven/FileDownloader/images/download.svg
-[bintray_url]: https://bintray.com/jacksgong/maven/FileDownloader/_latestVersion
-[file_download_listener_callback_flow_png]: https://github.com/lingochamp/FileDownloader/raw/master/art/filedownloadlistener_callback_flow.png
-[build_status_svg]: https://travis-ci.org/lingochamp/FileDownloader.svg?branch=master
-[filedownloader_snapshot_svg]: https://img.shields.io/badge/SnapShot-1.7.8-yellow.svg
-[build_status_link]: https://travis-ci.org/lingochamp/FileDownloader
+[mix_tasks_demo_gif]: https://github.com/Goooler/FileDownloader/raw/master/art/mix_tasks_demo.gif
+[parallel_tasks_demo_gif]: https://github.com/Goooler/FileDownloader/raw/master/art/parallel_tasks_demo.gif
+[serial_tasks_demo_gif]: https://github.com/Goooler/FileDownloader/raw/master/art/serial_tasks_demo.gif
+[tasks_manager_demo_gif]: https://github.com/Goooler/FileDownloader/raw/master/art/tasks_manager_demo.gif
+[avoid_drop_frames_1_gif]: https://github.com/Goooler/FileDownloader/raw/master/art/avoid_drop_frames1.gif
+[avoid_drop_frames_2_gif]: https://github.com/Goooler/FileDownloader/raw/master/art/avoid_drop_frames2.gif
+[single_demo_gif]: https://github.com/Goooler/FileDownloader/raw/master/art/single_demo.gif
+[chunked_demo_gif]: https://github.com/Goooler/FileDownloader/raw/master/art/chunked_demo.gif
+[file_download_listener_callback_flow_png]: https://github.com/Goooler/FileDownloader/raw/master/art/filedownloadlistener_callback_flow.png

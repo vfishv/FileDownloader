@@ -16,6 +16,8 @@
 
 package com.liulishuo.filedownloader.services;
 
+import static android.content.pm.ServiceInfo.FOREGROUND_SERVICE_TYPE_SHORT_SERVICE;
+
 import android.annotation.SuppressLint;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -24,6 +26,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.IBinder;
+
+import androidx.core.app.ServiceCompat;
 
 import com.liulishuo.filedownloader.PauseAllMarker;
 import com.liulishuo.filedownloader.download.CustomComponentHolder;
@@ -101,7 +105,12 @@ public class FileDownloadService extends Service {
                 if (notificationManager == null) return;
                 notificationManager.createNotificationChannel(notificationChannel);
             }
-            startForeground(config.getNotificationId(), config.getNotification(this));
+            ServiceCompat.startForeground(
+                    this,
+                    config.getNotificationId(),
+                    config.getNotification(this),
+                    FOREGROUND_SERVICE_TYPE_SHORT_SERVICE
+            );
             if (FileDownloadLog.NEED_LOG) {
                 FileDownloadLog.d(this, "run service foreground with config: %s", config);
             }
