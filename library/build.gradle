@@ -8,6 +8,9 @@ plugins.apply('checkstyle')
 android {
     namespace 'com.liulishuo.filedownloader'
 
+    defaultConfig {
+        minSdkVersion 16
+    }
     buildFeatures {
         aidl true
     }
