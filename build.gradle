@@ -10,11 +10,13 @@ allprojects {
     group = GROUP
     version = VERSION_NAME
 
+    /*
     plugins.withType(JavaBasePlugin).configureEach {
         java {
             toolchain.languageVersion = JavaLanguageVersion.of(17)
         }
     }
+    */
 
     plugins.withType(AndroidBasePlugin).configureEach {
         android {
