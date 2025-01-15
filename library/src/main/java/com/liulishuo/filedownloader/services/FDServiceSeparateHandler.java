@@ -15,7 +15,7 @@
  */
 package com.liulishuo.filedownloader.services;
 
-import static android.content.pm.ServiceInfo.FOREGROUND_SERVICE_TYPE_SHORT_SERVICE;
+import static android.content.pm.ServiceInfo.FOREGROUND_SERVICE_TYPE_DATA_SYNC;
 
 import android.app.Notification;
 import android.content.Intent;
@@ -136,7 +136,7 @@ public class FDServiceSeparateHandler extends IFileDownloadIPCService.Stub
                     this.wService.get(),
                     id,
                     notification,
-                    FOREGROUND_SERVICE_TYPE_SHORT_SERVICE
+                    FOREGROUND_SERVICE_TYPE_DATA_SYNC
             );
         }
     }
